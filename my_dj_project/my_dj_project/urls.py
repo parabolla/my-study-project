@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
@@ -5,7 +7,11 @@ from new_app.views import index
 from django.urls import path, include
 
 urlpatterns = [
+    path("", index),
     path("admin/", admin.site.urls),
     path("new_app/", include("new_app.urls")),
-    path("new_app2/", include("new_app2.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
