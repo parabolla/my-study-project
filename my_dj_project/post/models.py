@@ -4,21 +4,28 @@ from django.utils import timezone
 from new_app.models import CustomerUser
 
 
+class Tag(models.Model):
+    groups = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+        return f"{self.groups}"
+
+
+
 class Post(models.Model):
     author = models.ForeignKey(CustomerUser, related_name="posts", on_delete=models.CASCADE)
-    title = models.TextField(max_length=30)
+    tag = models.ForeignKey(Tag, related_name="posts", on_delete=models.SET_NULL, null=True)
+    title = models.TextField(max_length=30, blank=True)
     image = models.ImageField(upload_to="posts", blank=True)
     date_pub = models.DateTimeField(auto_now=True)
     date_change = models.DateTimeField(default=timezone.now)
     description = models.TextField(max_length=1000, blank=True)
-    group = models.TextField(max_length=20) # Группа товаров
-    favorites = models.ManyToManyField(CustomerUser, related_name="favorites", blank=True) # список избранного
-    price = models.IntegerField(max_length=100000)#Цена
-    phone_numbers = models.IntegerField(max_length=11)
-
+    price = models.IntegerField(blank=None)  # Цена
+    phone_numbers = models.CharField(max_length=11)
+    favorites = models.ForeignKey(CustomerUser, related_name="favorites", blank=True, null=True,on_delete=models.SET_NULL)
 
     def __str__(self):
         return f"Post from {self.author.username}"
 
-
-# asd
+    def get_favorites(self):
+        return self.favorites

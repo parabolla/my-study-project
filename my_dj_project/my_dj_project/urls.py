@@ -7,9 +7,9 @@ from new_app.views import index
 from django.urls import path, include
 
 urlpatterns = [
-    path("", index),
     path("admin/", admin.site.urls),
     path("new_app/", include("new_app.urls")),
+    path("", include("post.urls")),
 ]
 
 if settings.DEBUG:
