@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 from new_app.models import CustomerUser
@@ -26,6 +27,9 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Post from {self.author.username}"
+
+    def get_absolute_url(self):
+        return reverse('post:detail', args=(self.id, ))
 
     def get_favorites(self):
         return self.favorites

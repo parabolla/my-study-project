@@ -1,10 +1,10 @@
 from django.urls import path
 from new_app.views import *
-
-
+# для входа внутрь поста
+app_name = "post"
 
 urlpatterns = [
-    path("", index),
+    path('', index, name="index"),
     # path("all_posts/", all_posts, name="all_posts"),
     path("post_detail/<int:post_id>/", post_detail, name="detail"),
     path("post_create/", post_create, name="create"),

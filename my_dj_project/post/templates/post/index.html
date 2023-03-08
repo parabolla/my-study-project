@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ header }}</title>
-</head>
-<body>
+{% extends 'post/base.html' %}
+
+{% block title %}
+    {{ header }}
+{% endblock title %}
+
+{% block body %}
     <h1>{{ header }}</h1>
     {% for post in posts %}
-        <div class="post">
-            <a href="{{ post.id }}">Title: {{ post.title }}</a>
-            <p>Author: {{ post.author }} </p>
-            <p>Description: {{ post.description }} </p>
-            <img style="width: 50px" src="{{ post.image.url }}" alt="{{ post.title }}">
-            <p>date_pub: {{ post.date_pub }}</p>
-            <p>favorites: {{ post.favorites }}</p>
-            <p>price: {{ post.price }}</p>
-        </div>
+        {% include 'post/post_info.html' %}
     {% endfor %}
-</body>
-</html>
+{% endblock body %}
