@@ -1,0 +1,13 @@
+{% extends 'post/base.html' %}
+
+{% block title %}
+    {{ header }}
+{% endblock title %}
+
+{% block body %}
+    <h1>{{ header }}</h1>
+    <form action="{% url 'post:create' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="submit" value="Create post">
+    </form>
+{% endblock body %}

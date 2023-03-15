@@ -9,4 +9,17 @@
     <img style="width: 50px" src="{{ post.image.url }}" alt="{{ post.title }}">
     <p>date_pub: {{ post.date_pub }}</p>
     <p>price: {{ post.price }}</p>
+    {% if request.user.is_authenticated %}
+        <form method="post" action="{% url 'post:favorites' post.id %}">
+            {% csrf_token %}
+            {% if request.user in post.favorites.all %}
+                <button type="submit">★</button>
+            {% else %}
+                <button type="submit">✩</button>
+            {% endif %}
+        </form>
+    {% endif %}
+    {% if request.user.is_authenticated and request.user == post.author %}
+        <a href="{% url 'post:delete' post.id %}">Х</a>
+    {% endif %}
 </div>

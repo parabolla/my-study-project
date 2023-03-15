@@ -10,4 +10,25 @@
     {% if post %}
         {% include 'post/post_info.html' %}
     {% endif %}
+
+
+    <div class="comments">
+    {% for comment in post.comment_set.all %}
+        <div class="comment__item">
+            {% if request.user.is_authenticated and request.user == comment.author %}
+                <a href="{% url 'post:delete_comment' comment.id %}">delete comment</a>
+            {% endif %}
+            <p> Author: {{comment.author}}</p>
+            <p> Text : {{comment.text}}</p>
+            <p> {{comment.date_pub}}</p>
+        </div>
+    {% endfor %}
+    </div>
+
+<h2> Оставь коммент</h2>
+<form action="{% url 'post:comment' post.id  %}" method="post">
+    {% csrf_token %}
+    {{comment_form.as_p}}
+    <input type="submit" value="Comment">
+</form>
 {% endblock body %}

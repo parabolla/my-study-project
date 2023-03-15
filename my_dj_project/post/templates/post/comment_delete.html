@@ -1,0 +1,13 @@
+{% extends 'post/base.html' %}
+
+{% block title %}
+    {{ header }}
+{% endblock title %}
+
+{% block body %}
+    <h1>{{ header }}</h1>
+    <form action="{% url 'post:delete_comment' comment.id %}" method="post" >
+      {% csrf_token %}
+      <input type="submit" value="Comment delete">
+    </form>
+{% endblock body %}
