@@ -57,7 +57,7 @@ ROOT_URLCONF = "my_dj_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -84,6 +84,7 @@ DATABASES = {
 }
 
 AUTH_USER_MODEL = "new_app.CustomerUser"
+LOGIN_URL = 'new_app:login'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

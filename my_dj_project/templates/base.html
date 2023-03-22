@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}
+        OVITO
+      {% endblock title %}
+    </title>
+</head>
+<body class="page">
+    <header>
+        {% block login %}
+        <nav>
+            {% if not user.is_authenticated %}
+            <p><a href="{% url 'new_app:login' %}">Login</a></p>
+            <p><a href="#">Register</a></p>
+            {% else %}
+            <form action="{% url 'new_app:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">logout</button>
+            </form>
+            {% endif %}
+        {% endblock login %}
+        </nav>
+
+    </header>
+  {% block body %}
+
+  {% endblock body %}
+
+</body>
+</html>

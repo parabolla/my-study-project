@@ -4,7 +4,7 @@
     {% else %}
         <h2>Title:   <a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
     {% endif %}
-    <p>Author: {{ post.author }} </p>
+    <p>Author: <a href="{% url 'new_app:profile' post.author.id %}">{{ post.author }} </a></p>
     <p>Description: {{ post.description }} </p>
     <img style="width: 50px" src="{{ post.image.url }}" alt="{{ post.title }}">
     <p>date_pub: {{ post.date_pub }}</p>
