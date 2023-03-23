@@ -10,7 +10,7 @@
     <p>Firstname: {{customeruser.first_name}}</p>
     <p>Lastname: {{customeruser.last_name}}</p>
     <p>About: {{customeruser.about}}</p>
-    <img style="width: 100px" src="{% if customuser.avatar %}{{ customuser.avatar.url }}{% else %}#{% endif %}" alt="{{ customuser.username }}"/>
+    <img style="width: 100px" src="{% if customeruser.avatar %}{{ customeruser.avatar.url }}{% else %}#{% endif %}" alt="{{ customeruser.username }}"/>
 
 
     <h2>User posts:</h2>

@@ -14,7 +14,7 @@
         <nav>
             {% if not user.is_authenticated %}
             <p><a href="{% url 'new_app:login' %}">Login</a></p>
-            <p><a href="#">Register</a></p>
+            <p><a href="{% url 'new_app:signup' %}">Signup</a></p>
             {% else %}
             <form action="{% url 'new_app:logout' %}" method="post">
                 {% csrf_token %}

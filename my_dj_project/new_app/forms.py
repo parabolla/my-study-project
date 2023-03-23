@@ -1,6 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UsernameField
+from django.contrib.auth.forms import AuthenticationForm, UsernameField, UserCreationForm
 from django.utils.translation import gettext_lazy as _
+
+from new_app.models import CustomerUser
 
 
 class LoginForm(AuthenticationForm):
@@ -17,3 +19,9 @@ class LoginForm(AuthenticationForm):
             'class': 'form-control',
         }),
     )
+
+
+class SignupForm(UserCreationForm):
+    class Meta:
+        model = CustomerUser
+        fields = ("username", "avatar", "about")
