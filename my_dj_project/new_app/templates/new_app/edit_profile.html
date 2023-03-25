@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ header }}
+{% endblock title %}
+
+{% block body %}
+    <h1>{{ header }}</h1>
+    <a href="{% url 'post:index' %}">На главную</a>
+    <h2>User info</h2>
+    <nav>
+        <p>Firstname: {{customeruser.first_name}}</p>
+        <p>Lastname: {{customeruser.last_name}}</p>
+        <p>About: {{customeruser.about}}</p>
+        <img style="width: 100px" src="{% if customeruser.avatar %}{{ customeruser.avatar.url }}{% else %}#{% endif %}"
+            alt="{{ customeruser.username }}"/>
+    </nav>
+    <nav>
+    <h2>{{ edit }} </h2>
+    <form action="{% url 'new_app:edit_profile' customeruser.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update profile</button>
+
+    </form>
+    </nav>
+{% endblock body %}

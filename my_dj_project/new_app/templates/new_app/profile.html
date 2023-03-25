@@ -5,13 +5,14 @@
 {% endblock title %}
 
 {% block body %}
+<a href="{% url 'post:index' %}">На главную</a>
     <h1>{{ header }}</h1>
     <h2>User info</h2>
+    <a href="{% url 'new_app:edit_profile' customeruser.id %}">Update profile</a>
     <p>Firstname: {{customeruser.first_name}}</p>
     <p>Lastname: {{customeruser.last_name}}</p>
     <p>About: {{customeruser.about}}</p>
     <img style="width: 100px" src="{% if customeruser.avatar %}{{ customeruser.avatar.url }}{% else %}#{% endif %}" alt="{{ customeruser.username }}"/>
-
 
     <h2>User posts:</h2>
     {% for post in customeruser.posts.all %}

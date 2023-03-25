@@ -1,9 +1,13 @@
 from django.contrib.auth import login
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneView, \
+    PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetView
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy as _, reverse
+from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView
 
 from new_app.forms import LoginForm, SignupForm
 from new_app.models import CustomerUser
@@ -60,3 +64,47 @@ class ProfileView(DetailView):
         context = super().get_context_data(**kwargs)
         context['header'] = f'Profile of {object.username}'
         return context
+
+
+class ProfileEditView(UpdateView):
+    model = CustomerUser
+    template_name = 'new_app/edit_profile.html'
+    pk_url_kwarg = 'user_id'
+    fields = ['avatar', 'first_name', 'last_name', 'email', 'about']
+
+    def get_context_data(self, **kwargs):
+        object = self.get_object()
+        context = super().get_context_data(**kwargs)
+        context['edit'] = f'Edit Profile of {object.username}'
+        return context
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        object = self.get_object()
+        if object != request.user:
+            raise PermissionDenied("You are not author")
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        object = self.get_object()
+        return reverse('new_app:profile', kwargs={'user_id': object.id})
+
+
+class CustomPasswordResetView(PasswordResetView):
+    success_url = _("new_app:password_reset_done")
+    template_name = "new_app/password_reset/password_reset_form.html"
+    email_template_name = "new_app/password_reset/password_reset_email.html"
+    subject_template_name = "new_app/password_reset/subject_template_name.txt"
+
+
+class CustomPasswordResetViewDone(PasswordResetDoneView):
+    template_name = "new_app/password_reset/password_reset_done.html"
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    success_url = _("new_app:password_reset_complete")
+
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "new_app/password_reset/password_reset_complete.html"
