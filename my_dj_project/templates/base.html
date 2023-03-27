@@ -1,7 +1,12 @@
+
+
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% block static_files %}
+    {% endblock static_files %}
     <title>
       {% block title %}
         OVITO
@@ -9,25 +14,30 @@
     </title>
 </head>
 <body class="page">
-    <header>
+    <header class="header">
         {% block login %}
-        <nav>
+        <nav class="menu">
             {% if not user.is_authenticated %}
-            <p><a href="{% url 'new_app:login' %}">Login</a></p>
-            <p><a href="{% url 'new_app:signup' %}">Signup</a></p>
+            <p class="menu__item"><a href="{% url 'new_app:login' %}">Login</a></p>
+            <p class="menu__item"><a href="{% url 'new_app:signup' %}">Signup</a></p>
             {% else %}
-            <form action="{% url 'new_app:logout' %}" method="post">
+            <form class="menu__form" action="{% url 'new_app:logout' %}" method="post">
                 {% csrf_token %}
-                <button type="submit">logout</button>
+                <button class="menu__form__btn" type="submit">logout</button>
             </form>
             {% endif %}
         {% endblock login %}
         </nav>
 
     </header>
-  {% block body %}
+    <div class="content">
+        {% block body %}
 
-  {% endblock body %}
+        {% endblock body %}
+    </div>
+    <footer class="footer">
+
+    </footer>
 
 </body>
 </html>
