@@ -1,25 +1,29 @@
 <div class="post">
+    <nav class="post__posts">
     {% if request.path == post.get_absolute_url %}
-        <h2>Title: {{ post.title }}</h2>
+        <h2 class="main__title">Title: {{ post.title }}</h2>
     {% else %}
-        <h2>Title:   <a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+        <h2 class="main__title">Title: <a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
     {% endif %}
-    <p>Author: <a href="{% url 'new_app:profile' post.author.id %}">{{ post.author }} </a></p>
-    <p>Description: {{ post.description }} </p>
-    <img style="width: 50px" src="{{ post.image.url }}" alt="{{ post.title }}">
-    <p>date_pub: {{ post.date_pub }}</p>
-    <p>price: {{ post.price }}</p>
-    {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated %}
         <form method="post" action="{% url 'post:favorites' post.id %}">
             {% csrf_token %}
             {% if request.user in post.favorites.all %}
-                <button type="submit">★</button>
+                <button class="btn-fav" type="submit">★</button>
             {% else %}
-                <button type="submit">✩</button>
+                <button class="btn-fav" type="submit">✩</button>
             {% endif %}
         </form>
     {% endif %}
+
+        <img class="post__img" src="{{ post.image.url }}" alt="{{ post.title }}">
+        <p class="post__text">Author: <a href="{% url 'new_app:profile' post.author.id %}">{{ post.author }} </a></p>
+        <p class="post__text">Description: {{ post.description }} </p>
+        <p class="post__text">date_pub: {{ post.date_pub }}</p>
+        <p class="post__text">price: {{ post.price }}</p>
+
     {% if request.user.is_authenticated and request.user == post.author %}
-        <a href="{% url 'post:delete' post.id %}">Х</a>
+         <button class="btn"><a href="{% url 'post:delete' post.id %}">удалить пост</a></button>
     {% endif %}
+    </nav>
 </div>

@@ -1,0 +1,38 @@
+.main__title {
+    width: 300px;
+    font-size: larger;
+}
+
+.post {
+    display: -webkit-inline-box;
+
+}
+
+.post__img {
+    width: 300px;
+    height: 200px;
+}
+
+.btn-fav {
+display: flex;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 20px;
+}
+
+.post__text {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 200;
+    width: 300px;
+
+}
+
+.main__title {
+    width: 300px;
+}
+
+.post__posts {
+    margin-right: 90px;
+}

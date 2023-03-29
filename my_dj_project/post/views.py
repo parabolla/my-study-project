@@ -13,7 +13,7 @@ from post.models import Post, Comment
 def index(request):
     posts = Post.objects.all().order_by("-date_pub")[:10]
     context = {
-        "header": "Last ten pub",
+        "header": "Store sale",
         "posts": posts,
     }
     return render(request, "post/index.html", context)

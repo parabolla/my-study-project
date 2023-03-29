@@ -1,0 +1,148 @@
+/* Основные настроки сайта */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hidden {
+    /* display: none; лучше не использовать, ломается доступность */
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    top: 0;
+    left: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.undotted {
+    list-style-type : none
+}
+
+
+.content {
+    max-width: 1180px;
+    margin-left: 110px;
+
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.btn{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 10;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFAA00;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    padding: 2px 2px;
+    background: grey;
+    display: inline-block
+}
+
+.btn:hover {
+    background: #C29974;
+}
+
+.btn:active {
+    background: #CFAF91;
+}
+
+.btn:disabled {
+    background: #C7C1C1;
+}
+
+.header {
+    background-color: #1D7373;
+    color: #BF8F30;
+
+}
+
+/* Хедер */
+.menu {
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.header_btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.header__preview {
+
+    justify-content: center;
+    align-items: center;
+}
+
+.header__logo {
+    margin-right: 57px;
+}
+
+.header__logo:hover {
+    opacity: 0.5;
+}
+
+.header__logo:active {
+    opacity: 0.2;
+}
+
+
+
+.header__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+
+}
+
+/* footer */
+.footer {
+    background: #434343;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+}
+
+./* свойства для h2 футера */
+.footer__navigation__title {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #AAAAAA;
+}
+
+.footer__navigation {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.footer__text {
+    color: red;
+}

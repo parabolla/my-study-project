@@ -4,38 +4,57 @@
 <head>
     <meta charset="UTF-8">
     {% block static_files %}
-        <link rel="stylesheet" href="{% static 'common/css/index.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'common/css/common.css' %}" type="text/css">
+
+
     {% endblock static_files %}
     <title>
       {% block title %}
-        OVITO
+        Store sale
       {% endblock title %}
     </title>
 </head>
 <body class="page">
-    <header class="header">
+    <header class="header container">
         {% block login %}
         <nav class="menu">
             {% if not user.is_authenticated %}
-            <p class="menu__item"><a href="{% url 'new_app:login' %}">Login</a></p>
-            <p class="menu__item"><a href="{% url 'new_app:signup' %}">Signup</a></p>
+            <img class="header__logo" src="{% static 'common/logo/logo.png' %}" alt="logo">
+                <nav class="header_btn">
+                    <button class="btn"><a class="link" href="{% url 'new_app:login' %}">Login</a></button>
+                    <button class="btn"><a class="link" href="{% url 'new_app:signup' %}">Signup</a></button>
+                </nav>
             {% else %}
-            <form class="menu__form" action="{% url 'new_app:logout' %}" method="post">
-                {% csrf_token %}
-                <button class="menu__form__btn" type="submit">logout</button>
-            </form>
+            <img class="header__logo" src="{% static 'common/logo/logo.png' %}" alt="logo">
+            <nav class="header_btn">
+                <form class="menu__form" action="{% url 'new_app:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn" type="submit">logout</button>
+                </form>
+            </nav>
             {% endif %}
         {% endblock login %}
         </nav>
-
     </header>
-    <div class="content">
+    <div class="content container">
         {% block body %}
 
         {% endblock body %}
     </div>
     <footer class="footer">
+                <div class="footer__main container">
+            <div class="footer__navigation">
+                <p class="footer__text">Текст для заполнения</p>
+                <p class="footer__navigation__block__caption">Navigation</p>
+                <hr class="footer__navigation__line">
+                <a class="footer__navigation__link" aria-label="Переход по ссылке на главную страницу" href="index.html">About Us</a>
+                <a class="footer__navigation__link" aria-label="Переход по ссылке на страницу блога" href="Blog.html">Blog</a>
+                <a class="footer__navigation__link" aria-label="Переход по ссылке Design Services" href="#">Design Services</a>
+                <a class="footer__navigation__link" aria-label="Переход по ссылке Featured On" href="#">Featured On</a>
+                <a class="footer__navigation__link" aria-label="Переход по ссылке 2018 Holiday Catalog" href="#">2018 Holiday Catalog</a>
+                <a class="footer__navigation__link" aria-label="Переход по ссылке Shop By Designer" href="#">Shop By Designer</a>
 
+            </div>
     </footer>
 
 </body>
