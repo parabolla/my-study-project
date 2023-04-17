@@ -1,0 +1,17 @@
+.post {
+    margin-bottom: 50px;
+}
+
+
+.post__text {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 200;
+    width: 300px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.comment__text{
+
+}

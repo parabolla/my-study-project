@@ -16,7 +16,7 @@
         </form>
     {% endif %}
 
-        <img class="post__img" src="{{ post.image.url }}" alt="{{ post.title }}">
+        <img class="post__img container" src="{{ post.image.url }}" alt="{{ post.title }}">
         <p class="post__text">Author: <a href="{% url 'new_app:profile' post.author.id %}">{{ post.author }} </a></p>
         <p class="post__text">Description: {{ post.description }} </p>
         <p class="post__text">date_pub: {{ post.date_pub }}</p>

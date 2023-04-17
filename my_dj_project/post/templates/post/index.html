@@ -11,7 +11,7 @@
 {% endblock title %}
 
 {% block body %}
-    <h1>{{ header }}</h1>
+    <h1 class="main_caption hidden">{{ header }}</h1>
     {% for post in posts %}
         {% include 'post/post_info.html' %}
     {% endfor %}

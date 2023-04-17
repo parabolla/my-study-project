@@ -53,6 +53,8 @@ a {
     padding: 2px 2px;
     background: grey;
     display: inline-block
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 .btn:hover {
@@ -112,9 +114,6 @@ a {
     align-items: center;
 }
 
-.link {
-
-}
 
 /* footer */
 .footer {

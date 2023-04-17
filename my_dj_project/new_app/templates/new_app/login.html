@@ -1,18 +1,32 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block static_files %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'common/css/login.css' %}" type="text/css">
+{% endblock static_files %}
+
 
 {% block title %}
     {{ header }}
 {% endblock title %}
-{% block login %}
-{% endblock login %}
 
+
+{% block header %}
+{% endblock header %}
 {% block body %}
     <h1>{{ header }}</h1>
-    <form action="{% url 'new_app:login' %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-        {{form.as_p}}
-      <input type="submit" value="Login">
-    </form>
-    <h2>Забыли пароль?</h2>
-    <p><a href="{% url 'new_app:password_reset' %}">Восстановить пароль?</a></p>
+    <div class="login">
+        <nav class="login_nav">
+        <form class="login_nav_form" action="{% url 'new_app:login' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+            {{form.as_p}}
+          <input class="btn" type="submit" value="Login">
+        </form>
+        <h2 class="caption">Вы всегда можете восстановить свой пароль</h2>
+        <p class="link"><a href="{% url 'new_app:password_reset' %}">Восстановить пароль?</a></p>
+            </nav>
+    </div>
 {% endblock body %}
+{% block footer %}
+
+{% endblock footer %}

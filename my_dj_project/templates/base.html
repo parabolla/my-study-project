@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     {% block static_files %}
-        <link rel="stylesheet" href="{% static 'common/css/common.css' %}" type="text/css">
-
-
+    <link rel="stylesheet" href="{% static 'common/css/common.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'common/css/normalize.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'common/css/login.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'common/css/main.css' %}" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@200;700&family=Open+Sans:wght@400;700&display=swap"
+          rel="stylesheet">
     {% endblock static_files %}
     <title>
       {% block title %}
@@ -15,14 +18,15 @@
     </title>
 </head>
 <body class="page">
+{% block header %}
     <header class="header container">
         {% block login %}
         <nav class="menu">
             {% if not user.is_authenticated %}
             <img class="header__logo" src="{% static 'common/logo/logo.png' %}" alt="logo">
                 <nav class="header_btn">
-                    <button class="btn"><a class="link" href="{% url 'new_app:login' %}">Login</a></button>
-                    <button class="btn"><a class="link" href="{% url 'new_app:signup' %}">Signup</a></button>
+                    <button class="btn"><a class="btn" href="{% url 'new_app:login' %}">Login</a></button>
+                    <button class="btn"><a class="btn" href="{% url 'new_app:signup' %}">Signup</a></button>
                 </nav>
             {% else %}
             <img class="header__logo" src="{% static 'common/logo/logo.png' %}" alt="logo">
@@ -34,12 +38,14 @@
             </nav>
             {% endif %}
         {% endblock login %}
+            {% endblock header %}
         </nav>
     </header>
     <div class="content container">
         {% block body %}
 
         {% endblock body %}
+    {% block footer %}
     </div>
     <footer class="footer">
                 <div class="footer__main container">
@@ -56,6 +62,6 @@
 
             </div>
     </footer>
-
+    {% endblock footer %}
 </body>
 </html>

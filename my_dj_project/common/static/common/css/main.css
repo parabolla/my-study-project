@@ -26,13 +26,22 @@ display: flex;
     font-style: normal;
     font-weight: 200;
     width: 300px;
-
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .main__title {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
     width: 300px;
+
 }
 
 .post__posts {
     margin-right: 90px;
+}
+
+.main_caption{
+
 }

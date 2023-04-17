@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block static_files %}
+    <link rel="stylesheet" href="{% static 'common/css/post_info.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'common/css/common.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'common/css/normalize.css' %}" type="text/css">
+{% endblock static_files %}
+
 {% block title %}
     {{ header }}
 {% endblock title %}
 
 {% block body %}
-    <h1>{{ header }}</h1>
-    <a href="{% url 'post:index' %}">На главную</a>
+
+    <a class="go_to_index" href="{% url 'post:index' %}">На главную</a>
     {% if post %}
         {% include 'post/post_info.html' %}
     {% endif %}
@@ -19,16 +26,16 @@
                 <a href="{% url 'post:delete_comment' comment.id %}">delete comment</a>
             {% endif %}
             <p> Author: {{comment.author}}</p>
-            <p> Text : {{comment.text}}</p>
+            <p> {{comment.text}}</p>
             <p> {{comment.date_pub}}</p>
         </div>
     {% endfor %}
     </div>
 
 <h2> Оставь коммент</h2>
-<form action="{% url 'post:comment' post.id  %}" method="post">
+<form class="comment__text" action="{% url 'post:comment' post.id  %}" method="post">
     {% csrf_token %}
-    {{comment_form.as_p}}
-    <input type="submit" value="Comment">
+    {{comment_form.text}}
+    <input class="btn" type="submit" value="Comment">
 </form>
 {% endblock body %}
