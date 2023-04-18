@@ -12,15 +12,14 @@ class Tag(models.Model):
         return f"{self.groups}"
 
 
-
 class Post(models.Model):
     author = models.ForeignKey(CustomerUser, related_name="posts", on_delete=models.CASCADE)
     tag = models.ForeignKey(Tag, related_name="posts", on_delete=models.SET_NULL, null=True)
-    title = models.TextField(max_length=30, blank=True)
+    title = models.TextField(max_length=30, default="Описание заголовка")
     image = models.ImageField(upload_to="posts", blank=True)
     date_pub = models.DateTimeField(auto_now=True)
     date_change = models.DateTimeField(default=timezone.now)
-    description = models.TextField(max_length=1000, blank=True)
+    description = models.TextField(max_length=1000, default="Описание подробной информации")
     price = models.IntegerField(blank=None)  # Цена
     phone_numbers = models.CharField(max_length=11)
     favorites = models.ManyToManyField(CustomerUser, related_name="favorites", blank=True)
@@ -29,7 +28,7 @@ class Post(models.Model):
         return f"Post from {self.author.username}"
 
     def get_absolute_url(self):
-        return reverse('post:detail', args=(self.id, ))
+        return reverse('post:detail', args=(self.id,))
 
     def get_favorites(self):
         return self.favorites

@@ -12,6 +12,6 @@
     <form action="{% url 'post:delete' post.id %}" method="post">
       {% csrf_token %}
       {{form.as_p}}
-      <input class="btn" type="submit" value="Delete post">
+      <button class="btn" type="submit">Удалить пост</button>
     </form>
 {% endblock body %}

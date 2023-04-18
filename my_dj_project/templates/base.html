@@ -6,8 +6,8 @@
     {% block static_files %}
     <link rel="stylesheet" href="{% static 'common/css/common.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'common/css/normalize.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'common/css/login.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'common/css/main.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'common/css/login.css' %}" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@200;700&family=Open+Sans:wght@400;700&display=swap"
           rel="stylesheet">
     {% endblock static_files %}
@@ -29,12 +29,16 @@
                     <button class="btn"><a class="btn" href="{% url 'new_app:signup' %}">Signup</a></button>
                 </nav>
             {% else %}
-            <img class="header__logo" src="{% static 'common/logo/logo.png' %}" alt="logo">
+            <a class="go_to_index" href="{% url 'post:index' %}"> <img class="header__logo" src="{% static 'common/logo/logo.png' %}" alt="logo"></a>
             <nav class="header_btn">
                 <form class="menu__form" action="{% url 'new_app:logout' %}" method="post">
                     {% csrf_token %}
                     <button class="btn" type="submit">logout</button>
                 </form>
+                <nav class="header_btn">
+                     <a class="img__logo" href="{% url 'new_app:profile' user.id %}"><img class="img__logo" width="25px" src="{% static 'common/img/profile.png' %}" alt="logo"></a>
+                     <a class="img__logo" href="{% url 'post:create' %}"><img class="img__logo" width="25px" src="{% static 'common/img/new_post.png' %}" alt="logo"></a>
+                </nav>
             </nav>
             {% endif %}
         {% endblock login %}
@@ -42,6 +46,7 @@
         </nav>
     </header>
     <div class="content container">
+
         {% block body %}
 
         {% endblock body %}

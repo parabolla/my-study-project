@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block static_files %}
+    <link rel="stylesheet" href="{% static 'common/css/post_info.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'common/css/common.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'common/css/normalize.css' %}" type="text/css">
+{% endblock static_files %}
 {% block title %}
     {{ header }}
 {% endblock title %}
 
 {% block body %}
     <h1>{{ header }}</h1>
+    <a class="go_to_index" href="{% url 'post:index' %}">На главную</a>
     <form action="{% url 'post:create' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
-      <input type="submit" value="Create post">
+        <nav class="post_create">
+            <p class="post__text">{{form.tag}}</p>
+            <p class="post__text">{{form.title}}</p>
+            <p class="post__text">{{form.description}}</p>
+            <p class="post__text">{{form.price}}</p>
+            <p class="post__text">{{form.image}}</p>
+
+        </nav>
+      <button class="btn" type="submit">Запостить</button>
     </form>
 {% endblock body %}

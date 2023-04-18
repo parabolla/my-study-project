@@ -1,11 +1,17 @@
+from django.contrib.sitemaps.views import index
 from django.urls import path
-from post.views import *
+from .views import *
+
+from .views import subcribe_view, post_detail, post_create, UpdatePostView, DeletePostView, favorites, \
+    post_comment, DeleteCommentView
+
 # для входа внутрь поста
 app_name = "post"
 
 urlpatterns = [
     path('', index, name="index"),
-    # path("all_posts/", all_posts, name="all_posts"),
+    path('auto/', auto, name="auto"),
+    path('flats/', flats, name="flats"),
     path("post_detail/<int:post_id>/", post_detail, name="detail"),
     path("subscribe/", subcribe_view, name="subscribe"),
     path("post_create/", post_create, name="create"),

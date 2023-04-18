@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
 from django.urls import path
 
-from new_app.views import CustomLoginView, ProfileView, CustomLogoutView, SignupView, ProfileEditView, \
+from .views import CustomLoginView, ProfileView, CustomLogoutView, SignupView, ProfileEditView, \
     CustomPasswordResetView, CustomPasswordResetConfirmView, CustomPasswordResetViewDone, CustomPasswordResetCompleteView
 
 app_name = "new_app"

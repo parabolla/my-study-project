@@ -12,10 +12,6 @@
 
 {% block body %}
     <h1 class="main_caption hidden">{{ header }}</h1>
-        <nav class="tags">
-            <p class="tags__link"><a  href="{% url 'post:auto' %}">Auto</a></p>
-            <p class="tags__link"><a  href="{% url 'post:flats' %}">Flats</a></p>
-        </nav>
     {% for post in posts %}
         {% include 'post/post_info.html' %}
     {% endfor %}

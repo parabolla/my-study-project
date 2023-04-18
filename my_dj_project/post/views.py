@@ -6,8 +6,8 @@ from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView
 
-from post.forms import SubscribeForm, PostForm, CommentPostForm
-from post.models import Post, Comment
+from .forms import SubscribeForm, PostForm, CommentPostForm
+from .models import Post, Comment, Tag
 
 
 def index(request):
@@ -19,13 +19,22 @@ def index(request):
     return render(request, "post/index.html", context)
 
 
-# def all_posts(request):  # Список с фильтром
-#     posts = Post.objects.all()
-#     context = {
-#         "header": "All posts",
-#         "posts": posts,
-#     }
-#     return render(request, 'post/index.html', context)
+def auto(request):
+    posts = Post.objects.all().filter(tag__groups="Cars")
+    context = {
+        "header": "Groups",
+        "posts": posts,
+    }
+    return render(request, "post/groups.html", context)
+
+def flats(request):
+    posts = Post.objects.all().filter(tag__groups="Flats")
+    context = {
+        "header": "Groups",
+        "posts": posts,
+    }
+    return render(request, "post/flats.html", context)
+
 
 
 
